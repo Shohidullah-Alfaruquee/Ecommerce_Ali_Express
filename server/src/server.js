@@ -16,6 +16,27 @@ app.get('/', (req, res ) => {
         message: "Api is working fine"
     })
  })
+
+ app.post('/test', (req, res ) => { 
+    res.status(200).send({
+        message: "Post Api is working fine"
+    })
+ })
+
+ app.put('/test', (req, res ) => { 
+    res.status(200).send({
+        message: "Put Api is working fine"
+    })
+ })
+
+ app.delete('/test', (req, res ) => { 
+    res.status(200).send({
+        message: "Delete Api is working fine"
+    })
+ })
+
+
+
 app.get('/products', (req, res ) => { 
     res.status(200).send({
         message: "products are returned"
