@@ -4,44 +4,37 @@ const app = express();
 
 // Midlewares
 app.use(morgan('dev'));
+app.use(express.json());
+app.use(express.urlencoded({extended:true}));
 
-app.get('/', (req, res ) => { 
+const isLoggedIn = (req, res, next) => { 
+    let login = true;
+    if(login){
+        req.body.id = 101 // modify the req body. 
+        next()
+    }else{
+        return res.status(401).json({
+            message:"Please login first."
+        })
+    }
+    console.log("Is logged in middleware");
+    next()
+ }
+
+app.get('/test', (req, res ) => { 
     res.status(200).send({
         message: "Welcome to the server"
     })
  })
 
- app.get('/test', (req, res ) => { 
+ app.get('/api/user', isLoggedIn, (req, res ) => { 
+    console.log(req.body.id);
     res.status(200).send({
-        message: "Api is working fine"
-    })
- })
-
- app.post('/test', (req, res ) => { 
-    res.status(200).send({
-        message: "Post Api is working fine"
-    })
- })
-
- app.put('/test', (req, res ) => { 
-    res.status(200).send({
-        message: "Put Api is working fine"
-    })
- })
-
- app.delete('/test', (req, res ) => { 
-    res.status(200).send({
-        message: "Delete Api is working fine"
+        message: "User profile is returned"
     })
  })
 
 
-
-app.get('/products', (req, res ) => { 
-    res.status(200).send({
-        message: "products are returned"
-    })
- })
 
 app.listen(3001, (req, res) => {
     console.log(`server is running at http://localhost:3001`);
