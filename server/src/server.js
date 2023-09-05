@@ -34,8 +34,22 @@ app.get('/test', (req, res ) => {
     })
  })
 
+//Client error handling midleware
+app.use((req, res, next) => { 
+    res.status(404).json({
+        message: "Route not found"
+    });
+    next();
+ });
 
 
+ //server error handling middleware
+ app.use((err, req, res, next) => { 
+    console.error(err.stack);
+    res.status(500).send("Something broke!")
+  });
+
+  
 app.listen(3001, (req, res) => {
     console.log(`server is running at http://localhost:3001`);
  })
