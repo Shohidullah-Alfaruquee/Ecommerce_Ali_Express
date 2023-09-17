@@ -13,3 +13,5 @@
 11. Environment variable and .gitignore
 12. MVC Architecture
 13. MongoDB Database connection
+14. Model and Schema, Bcrypt package introduction
+15. Create seed route for testing

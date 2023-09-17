@@ -41,7 +41,7 @@ const { defaultImagePath } = require('../secret');
    },
    phone: {
       type: String,
-      required: [true, "Address is required"],
+      required: [true, "Phone no. is required"],
    },
    isAdmin: {
       type: Boolean,
